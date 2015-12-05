@@ -9,26 +9,26 @@
  * Main module of the application.
  */
 angular
-  .module('frontendApp', [
+  .module('TotalRecall', [
     'ngAnimate',
     'ngCookies',
     'ngMessages',
     'ngResource',
-    'ngRoute',
+    'ui.router',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'TotalRecall'
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+  .config(function ($stateProvider, $urlRouterProvider) {
+    $stateProvider
+      .state('search', {
+        url:'/search',
+        templateUrl: 'views/search.html',
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+      $urlRouterProvider.otherwise("/search");
+  })
+.config(['$httpProvider', function($httpProvider) {
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    }
+]);
