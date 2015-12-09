@@ -17,7 +17,8 @@ var app = angular
     'ui.router',
     'ngSanitize',
     'ngTouch',
-    'ngMaterial'
+    'ngMaterial',
+    'angularUtils.directives.dirPagination'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -50,4 +51,7 @@ var app = angular
     $mdIconProvider
       .iconSet('social', 'img/icons/sets/social-icons.svg', 24)
       .defaultIconSet('img/icons/sets/core-icons.svg', 24);
-  }]);
+  }])
+.config(function(paginationTemplateProvider) {
+    paginationTemplateProvider.setPath('bower_components/angularUtils-pagination/dirPagination.tpl.html');
+});;

@@ -1,0 +1,14 @@
+<!-- <div ng-controller="ResultsCtrl as resultsCntrl"> -->
+  <md-list>
+      <md-list-item class="md-3-line" dir-paginate="tweet in resultsCntrl.tweets | itemsPerPage: 10">
+        <img ng-src="{{tweet.pic}}" class="md-avatar" alt="{{tweet.handle}}" />
+          <div class="md-list-item-text" layout="column">
+            <h3>{{ tweet.handle}}</h3>
+            <h4>{{ tweet.text }}</h4>
+            <!-- <p>{{ tweet.retweet }}</p> -->
+          </div>
+      </md-list-item>
+    <md-divider ></md-divider>
+  </md-list>
+  <dir-pagination-controls></dir-pagination-controls>
+<!-- </div>
