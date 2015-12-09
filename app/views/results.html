@@ -1,0 +1,18 @@
+<div ng-controller="SearchCtrl as searchcntrl" class="icondemoSvgIconSets">
+	<form class="form-horizontal" ng-submit="searchcntrl.search(searchcntrl.query)">
+	 		<div class="row">
+	 			<div class="col-xs-12 col-sm-6 col-md-8">
+					<input type="text" class="form-control" style="margin-top:15px;"ng-model="searchcntrl.query">
+				</div>
+				<div class="col-xs-6 col-md-4">
+					<md-button class="md-fab" aria-label="Eat cake">
+					<md-icon md-font-set="material-icons"> search </md-icon>
+					</md-button>
+				</div>
+			</div>
+	</form>
+	<md-tabs md-stretch-tabs md-selected="selectedIndex">
+		 <md-tab label="tweets"></md-tab>
+		 <md-tab label="analytics"></md-tab>
+	</md-tabs>
+<div ui-view></div>

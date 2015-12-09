@@ -1,7 +1,6 @@
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
-  color: #000;
   padding: 0.2em 0;
 }
 
@@ -33,7 +32,6 @@ body {
 /* Custom page footer */
 .footer {
   padding-top: 19px;
-  color: #777;
   border-top: 1px solid #e5e5e5;
 }
 
@@ -67,10 +65,39 @@ body {
   margin-top: 28px;
 }
 
+    [class^="icon-"]:before,
+    [class*=" icon-"]:before {
+      /** associate font-family with font icons names */
+      font-family:"icomoon";
+      display:inline-block;
+      vertical-align:middle;
+      line-height:1;
+      font-weight:normal;
+      font-style:normal;
+      speak:none;
+      text-decoration:inherit;
+      text-transform:none;
+      text-rendering:optimizeLegibility;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .icon-home:before {
+        content: "\e900";
+    }
+
+md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {
+    color: rgba(0,0,0,0.54);
+}
+
+md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused {
+    color: rgb(63,81,181);
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
-    max-width: 730px;
+    max-width: 100%;
   }
 
   /* Remove the padding we set earlier */
