@@ -1,8 +1,8 @@
 <div class="icondemoSvgIconSets" ng-cloak>
-	<form class="form-horizontal" ng-submit="search(query)">
+	<form class="form-horizontal" ng-submit="search(Model.query)">
 	 		<div class="row">
 	 			<div class="col-xs-12 col-sm-6 col-md-8">
-					<input type="text" class="form-control" style="margin-top:15px;"ng-model="query">
+					<input type="text" class="form-control" style="margin-top:15px;"ng-model="Model.query">
 				</div>
 				<div class="col-xs-6 col-md-4">
 					<md-button class="md-fab" aria-label="Eat cake">
@@ -12,9 +12,8 @@
 			</div>
 	</form>
 	<md-tabs md-stretch-tabs >
-		 <md-tab label="tweets" ui-sref="results.list"></md-tab>
-		 <md-tab label="analytics" ui-sref="results.analytics"></md-tab>
-		 <md-tab label="Ranked Tweets" ui-sref="results.analytics"></md-tab>
+		 <md-tab label="Ranked Tweets" ui-sref="results.list"></md-tab>
+		 <md-tab label="Location" ui-sref="results.analytics"></md-tab>
 	</md-tabs>
 <div ui-view=""></div>
 </div>

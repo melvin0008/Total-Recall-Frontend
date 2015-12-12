@@ -8,19 +8,27 @@
  * Controller of the frontendApp
  */
 app.controller('ResultsCtrl', function ($scope,$state,$stateParams,searchFactory,NgMap) {
+        if($stateParams.query==undefined && $scope.query==undefined)
+        {
+            $state.go('search')
+            return
+        }
       // console.log($state.current.name)
+      $scope.selectedsentiment="all"
       $scope.Model = $scope.Model || {dynMarkers : [],locations:[],tweets:[],selectedIndex:0}
         if($stateParams.query)
         {
-          $scope.query=$scope.query||$stateParams.query
+          $scope.Model.query=$stateParams.query || $scope.query
         }
       $scope.search=function(query){
+        if(query && query[0]=='#')
+            query=query.substring(1)
+        $scope.Model.query=query
         searchFactory.searchQuery(query,1).then(function(data){
-        console.log(data)
         $scope.Model.tweets=[]
         $scope.Model.dynMarkers=[]
         $scope.Model.locations=[]
-          data.locations.map(function(s) {
+        data.locations.map(function(s) {
               return JSON.parse(JSON.stringify(s))
         });
         if ($scope.Model.markerClusterer !== undefined){
@@ -28,6 +36,7 @@ app.controller('ResultsCtrl', function ($scope,$state,$stateParams,searchFactory
         }
         $scope.Model.tweets=data.tweets
         $scope.Model.locations=data.locations
+        $scope.Model.facet=data.facet_fields
         // $scope.Model.markerClusterer.setMap(null)
         NgMap.getMap().then(function(map) {
           // $scope.locations= $scope.locations || data.locations
@@ -41,8 +50,9 @@ app.controller('ResultsCtrl', function ($scope,$state,$stateParams,searchFactory
         });
       })
     }
-    console.log()
-    $scope.search($scope.query)
-
+    $scope.search($scope.Model.query)
+     searchFactory.getTrending().then(function(data){
+        $scope.trending=data.trending
+     });
 });
 
