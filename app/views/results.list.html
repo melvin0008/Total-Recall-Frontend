@@ -19,12 +19,14 @@
     </div>
   </div>
   <div ng-show="Model.tweets">
+  <b>Total Tweets</b>: {{Model.tweets.length}}
     <md-list>
         <md-list-item class="md-3-line" dir-paginate="tweet in Model.tweets | sentiment: selectedsentiment| itemsPerPage: 10">
           <img ng-src="{{tweet.user_dp}}" class="md-avatar" alt="{{tweet.user_name}}" />
             <div class="md-list-item-text">
               <h3><b>{{ tweet.user_name}}<b></h3>
               <h4><span ng-bind-html="tweet.text | linky"></span></h4>
+              <md-icon md-font-set="material-icons"> schedule</md-icon>{{ tweet.date }}&nbsp;&nbsp;&nbsp;
               <md-icon md-font-set="material-icons"> accessibility</md-icon>{{ tweet.followers_count }}&nbsp;&nbsp;&nbsp;
               <md-icon md-font-set="material-icons"> star </md-icon>{{ tweet.favorite_count }}&nbsp;&nbsp;&nbsp;
               <md-icon md-font-set="material-icons"> cached </md-icon>{{ tweet.retweet_count }}&nbsp;&nbsp;&nbsp;
