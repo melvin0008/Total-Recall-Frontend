@@ -8,17 +8,17 @@
  * Controller of the frontendApp
  */
 app.controller('ResultsCtrl', function ($scope,$state,$stateParams,searchFactory,NgMap) {
-        if($stateParams.query==undefined && $scope.query==undefined)
+      $scope.Model = $scope.Model || {dynMarkers : [],locations:[],tweets:[],selectedIndex:0}
+        if($stateParams.query==undefined && $scope.Model.query==undefined)
         {
             $state.go('search')
             return
         }
       // console.log($state.current.name)
       $scope.selectedsentiment="all"
-      $scope.Model = $scope.Model || {dynMarkers : [],locations:[],tweets:[],selectedIndex:0}
         if($stateParams.query)
         {
-          $scope.Model.query=$stateParams.query || $scope.query
+          $scope.Model.query=$scope.Model.query||$stateParams.query
         }
       $scope.search=function(query){
         if(query && query[0]=='#')
