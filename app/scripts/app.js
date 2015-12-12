@@ -18,7 +18,8 @@ var app = angular
     'ngSanitize',
     'ngTouch',
     'ngMaterial',
-    'angularUtils.directives.dirPagination'
+    'angularUtils.directives.dirPagination',
+    'ngMap'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -28,16 +29,32 @@ var app = angular
       })
       .state('results', {
         abstract: true,
+        params:{query:null},
+        controller:"ResultsCtrl",
         templateUrl: 'views/results.html'
       })
       .state('results.list', {
           // loaded into ui-view of parent's template
           url:'/results',
+          params:{query:null},
+          controller:"ResultsCtrl",
+           parent: 'results',
+          templateUrl: 'views/results.list.html'
+      })
+      .state('results.ranked', {
+          // loaded into ui-view of parent's template
+          url:'/results',
+          params:{query:null},
+          controller:"ResultsCtrl",
+           parent: 'results',
           templateUrl: 'views/results.list.html'
       })
       .state('results.analytics', {
           // loaded into ui-view of parent's template
           url:'/resultsanalytics',
+          params:{query:null},
+          controller:"ResultsCtrl",
+           parent: 'results',
           templateUrl: 'views/results.analytics.html'
       })
       $urlRouterProvider.otherwise("/results");

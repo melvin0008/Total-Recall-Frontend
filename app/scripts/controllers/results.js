@@ -7,51 +7,42 @@
  * # AboutCtrl
  * Controller of the frontendApp
  */
-app.controller('ResultsCtrl', function ($scope,$state,searchFactory) {
-  	var self=this;
-  	var query="paris"
-  	self.search=function(query){
-  		searchFactory.searchQuery(query).then(function(data){
-  			// console.log("asd")
-  			// $state.go('results.list');
-  		})
-  	}
-
-  	self.selectedIndex = 0;
-  	self.tweets=[{'handle':'MuniraAlii','pic':'http://pbs.twimg.com/profile_images/666384037364264960/_I_YEsn1_normal.jpg','text':"First Assad, then ISIS, now the West."},
-  	{'handle':'MuniraAlii1','pic':'http://pbs.twimg.com/profile_images/666384037364264960/_I_YEsn1_normal.jpg','text':"First Assad, then ISIS, now the West."},
-  	{'handle':'MuniraAlii2','pic':'http://pbs.twimg.com/profile_images/666384037364264960/_I_YEsn1_normal.jpg','text':"First Assad, then ISIS, now the West."},
-  	{'handle':'MuniraAlii3','pic':'http://pbs.twimg.com/profile_images/666384037364264960/_I_YEsn1_normal.jpg','text':"First Assad, then ISIS, now the West."},
-  	{'handle':'MuniraAlii4','pic':'http://pbs.twimg.com/profile_images/666384037364264960/_I_YEsn1_normal.jpg','text':"First Assad, then ISIS, now the West."},
-  	{'handle':'MuniraAlii5','pic':'http://pbs.twimg.com/profile_images/666384037364264960/_I_YEsn1_normal.jpg','text':"First Assad, then ISIS, now the West."},
-  	{'handle':'MuniraAlii6','pic':'http://pbs.twimg.com/profile_images/666384037364264960/_I_YEsn1_normal.jpg','text':"First Assad, then ISIS, now the West."},
-  	{'handle':'MuniraAlii7','pic':'http://pbs.twimg.com/profile_images/666384037364264960/_I_YEsn1_normal.jpg','text':"First Assad, then ISIS, now the West."},
-  	{'handle':'MuniraAlii8','pic':'http://pbs.twimg.com/profile_images/666384037364264960/_I_YEsn1_normal.jpg','text':"First Assad, then ISIS, now the West."},
-  	{'handle':'MuniraAlii9','pic':'http://pbs.twimg.com/profile_images/666384037364264960/_I_YEsn1_normal.jpg','text':"First Assad, then ISIS, now the West."},
-  	{'handle':'MuniraAlii10','pic':'http://pbs.twimg.com/profile_images/666384037364264960/_I_YEsn1_normal.jpg','text':"First Assad, then ISIS, now the West."},
-  	{'handle':'MuniraAlii11','pic':'http://pbs.twimg.com/profile_images/666384037364264960/_I_YEsn1_normal.jpg','text':"First Assad, then ISIS, now the West."},
-  	{'handle':'MuniraAlii12','pic':'http://pbs.twimg.com/profile_images/666384037364264960/_I_YEsn1_normal.jpg','text':"First Assad, then ISIS, now the West."},
-  	{'handle':'MuniraAlii13','pic':'http://pbs.twimg.com/profile_images/666384037364264960/_I_YEsn1_normal.jpg','text':"First Assad, then ISIS, now the West."},
-  	{'handle':'MuniraAlii14','pic':'http://pbs.twimg.com/profile_images/666384037364264960/_I_YEsn1_normal.jpg','text':"First Assad, then ISIS, now the West."},
-  	{'handle':'MuniraAlii15','pic':'http://pbs.twimg.com/profile_images/666384037364264960/_I_YEsn1_normal.jpg','text':"First Assad, then ISIS, now the West."},
-  	{'handle':'MuniraAlii16','pic':'http://pbs.twimg.com/profile_images/666384037364264960/_I_YEsn1_normal.jpg','text':"First Assad, then ISIS, now the West."},
-  	{'handle':'MuniraAlii17','pic':'http://pbs.twimg.com/profile_images/666384037364264960/_I_YEsn1_normal.jpg','text':"First Assad, then ISIS, now the West."},
-  	{'handle':'MuniraAlii18','pic':'http://pbs.twimg.com/profile_images/666384037364264960/_I_YEsn1_normal.jpg','text':"First Assad, then ISIS, now the West."},
-  	{'handle':'MuniraAlii19','pic':'http://pbs.twimg.com/profile_images/666384037364264960/_I_YEsn1_normal.jpg','text':"First Assad, then ISIS, now the West."},
-  	{'handle':'MuniraAlii20','pic':'http://pbs.twimg.com/profile_images/666384037364264960/_I_YEsn1_normal.jpg','text':"First Assad, then ISIS, now the West."},
-  	{'handle':'MuniraAlii21','pic':'http://pbs.twimg.com/profile_images/666384037364264960/_I_YEsn1_normal.jpg','text':"First Assad, then ISIS, now the West."},
-  	{'handle':'MuniraAlii22','pic':'http://pbs.twimg.com/profile_images/666384037364264960/_I_YEsn1_normal.jpg','text':"First Assad, then ISIS, now the West."}]
-    $scope.$watch(function () {
-        return self.selectedIndex;
-    }, function(current, old) {
-        switch (current) {
-            case 0:
-                $state.go('results.list');
-                break;
-            case 1:
-                $state.go('results.analytics');
-                break;
+app.controller('ResultsCtrl', function ($scope,$state,$stateParams,searchFactory,NgMap) {
+      // console.log($state.current.name)
+      $scope.Model = $scope.Model || {dynMarkers : [],locations:[],tweets:[],selectedIndex:0}
+        if($stateParams.query)
+        {
+          $scope.query=$scope.query||$stateParams.query
         }
-    });
+      $scope.search=function(query){
+        searchFactory.searchQuery(query,1).then(function(data){
+        console.log(data)
+        $scope.Model.tweets=[]
+        $scope.Model.dynMarkers=[]
+        $scope.Model.locations=[]
+          data.locations.map(function(s) {
+              return JSON.parse(JSON.stringify(s))
+        });
+        if ($scope.Model.markerClusterer !== undefined){
+                $scope.Model.markerClusterer.setMap(null)
+        }
+        $scope.Model.tweets=data.tweets
+        $scope.Model.locations=data.locations
+        // $scope.Model.markerClusterer.setMap(null)
+        NgMap.getMap().then(function(map) {
+          // $scope.locations= $scope.locations || data.locations
+          for (var i=0; i<data.locations.length; i++) {
+            var latLng = new google.maps.LatLng($scope.Model.locations[i][0], $scope.Model.locations[i][1]);
+            var marker=new google.maps.Marker({position:latLng})
+            marker.setVisible(false)
+            $scope.Model.dynMarkers.push(marker);
+          }
+          $scope.Model.markerClusterer = new MarkerClusterer(map, $scope.Model.dynMarkers, {});
+        });
+      })
+    }
+    console.log()
+    $scope.search($scope.query)
+
 });
 

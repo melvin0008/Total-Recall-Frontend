@@ -10,11 +10,7 @@
 angular.module('TotalRecall')
   .controller('SearchCtrl', function ($scope,$state,searchFactory) {
   	var self=this;
-  	var query="paris"
   	self.search=function(query){
-  		searchFactory.searchQuery(query).then(function(data){
-  			// console.log("asd")
-  			// $state.go('results.list');
-  		})
+  		$state.go('results.list',{query:query})
   	}
 });

@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * @ngdoc service
  * @name frontendApp.searchFactory
@@ -9,15 +8,13 @@
  */
 angular.module('TotalRecall')
   .factory('searchFactory', function ($http,$q,apiUrl) {
-    // Service logic
-
     // Public API here
     return {
-      searchQuery: function (searchQuery) {
+      searchQuery: function (searchQuery,pageNumber) {
           var deferred =$q.defer();
           $http({
             method:'GET',
-            url:apiUrl+'search/'+searchQuery
+            url:apiUrl+'search?q='+searchQuery+"&row="+pageNumber
           }).success(function(data){
             deferred.resolve(data)
           }).error(function(){

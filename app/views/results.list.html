@@ -1,14 +1,13 @@
-<!-- <div ng-controller="ResultsCtrl as resultsCntrl"> -->
+<!-- <div ng-controller="ResultsCtrl2 as resultsCntrl2"> -->
   <md-list>
-      <md-list-item class="md-3-line" dir-paginate="tweet in resultsCntrl.tweets | itemsPerPage: 10">
-        <img ng-src="{{tweet.pic}}" class="md-avatar" alt="{{tweet.handle}}" />
-          <div class="md-list-item-text" layout="column">
-            <h3>{{ tweet.handle}}</h3>
-            <h4>{{ tweet.text }}</h4>
+      <md-list-item class="md-3-line" dir-paginate="tweet in Model.tweets | itemsPerPage: 10">
+        <img ng-src="{{tweet.user_dp}}" class="md-avatar" alt="{{tweet.user_name}}" />
+          <div class="md-list-item-text">
+            <h3>{{ tweet.user_name}}</h3>
+            <h4><span ng-bind-html="tweet.text | linky"></span></h4>
             <!-- <p>{{ tweet.retweet }}</p> -->
           </div>
       </md-list-item>
-    <md-divider ></md-divider>
   </md-list>
   <dir-pagination-controls></dir-pagination-controls>
-<!-- </div>
+<!-- </div> -->
