@@ -70,5 +70,5 @@ var app = angular
       .defaultIconSet('img/icons/sets/core-icons.svg', 24);
   }])
 .config(function(paginationTemplateProvider) {
-    paginationTemplateProvider.setPath('bower_components/angularUtils-pagination/dirPagination.tpl.html');
+    paginationTemplateProvider.setPath('views/template.paginate.html');
 });;
