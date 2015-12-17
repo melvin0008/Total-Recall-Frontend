@@ -55,7 +55,7 @@ app.controller('ResultsCtrl', function ($scope,$state,$stateParams,searchFactory
         }
         $scope.Model.tweets=data.tweets
         $scope.Model.locations=data.locations
-        $scope.facet=data.facet_fields || null;
+        $scope.Model.facet=data.facet_fields || null;
         console.log(data.facet_fields)
         // $scope.Model.markerClusterer.setMap(null)
         NgMap.getMap().then(function(map) {
