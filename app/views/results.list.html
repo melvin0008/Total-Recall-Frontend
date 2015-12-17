@@ -10,18 +10,23 @@
     </md-input-container>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <div layout="column">
-    <div flex ng-show="Model.facet">
-      Related Terms: &nbsp;&nbsp;&nbsp;&nbsp;<span ng-repeat=" facetfield in Model.facet"><a ng-click="search(facetfield)" href="">{{facetfield}}</a> &nbsp;</span>
-    </div>
-    <div flex ng-show="trending">
-      Trending Topics: &nbsp;&nbsp;&nbsp;&nbsp;<span ng-repeat=" facetfield in trending"><a ng-click="search(facetfield)" href="">{{facetfield}}</a> &nbsp;</span>
-    </div>
+      <div flex ng-show="Model.facet">
+        Related Terms: &nbsp;&nbsp;&nbsp;&nbsp;<span ng-repeat=" facetfield in Model.facet"><a ng-click="search(facetfield)" href="">{{facetfield}}</a> &nbsp;</span>
+      </div>
+      <div flex ng-show="trending">
+        Trending Topics: &nbsp;&nbsp;&nbsp;&nbsp;<span ng-repeat=" facetfield in trending"><a ng-click="search(facetfield)" href="">{{facetfield}}</a> &nbsp;</span>
+      </div>
+      <div flex ng-show="trending">
+        <mb-datepicker id="date1"  arrows="arrows"  date="Model.myDate1" date-format="YYYY-MM-DD" placeholder="Date From"></mb-datepicker>
+
+        <mb-datepicker id="date2"  arrows="arrows"  date="Model.myDate2" date-format="YYYY-MM-DD" placeholder="Date To" ></mb-datepicker>
+      </div>
     </div>
   </div>
   <div ng-show="Model.tweets">
-  <b>Total Tweets</b>: {{Model.tweets.length}}
+  <b>Total Tweets</b>: {{tweets.length}}
     <md-list>
-        <md-list-item class="md-3-line" dir-paginate="tweet in Model.tweets | sentiment: selectedsentiment| itemsPerPage: 10">
+        <md-list-item class="md-3-line" dir-paginate="tweet in tweets=( Model.tweets |sentiment: selectedsentiment| datefilter:Model.myDate1:Model.myDate2) |itemsPerPage: 10">
           <img ng-src="{{tweet.user_dp}}" class="md-avatar" alt="{{tweet.user_name}}" />
             <div class="md-list-item-text">
               <h3><b>{{ tweet.user_name}}<b></h3>

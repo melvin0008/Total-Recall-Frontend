@@ -19,7 +19,9 @@ var app = angular
     'ngTouch',
     'ngMaterial',
     'angularUtils.directives.dirPagination',
-    'ngMap'
+    'ngMap',
+    'angular-jqcloud',
+    'materialDatePicker'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -41,13 +43,13 @@ var app = angular
            parent: 'results',
           templateUrl: 'views/results.list.html'
       })
-      .state('results.ranked', {
+       .state('results.wordCloud', {
           // loaded into ui-view of parent's template
           url:'/results',
           params:{query:null},
-          controller:"ResultsCtrl",
+          controller:"WordcloudCtrl",
            parent: 'results',
-          templateUrl: 'views/results.list.html'
+          templateUrl: 'views/results.wordCloud.html'
       })
       .state('results.analytics', {
           // loaded into ui-view of parent's template

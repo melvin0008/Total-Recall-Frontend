@@ -33,6 +33,18 @@ angular.module('TotalRecall')
             deferred.reject("There is an error")
           })
           return deferred.promise
+      },
+      getCloud: function () {
+          var deferred =$q.defer();
+          $http({
+            method:'GET',
+            url:apiUrl+'trendingCloud'
+          }).success(function(data){
+            deferred.resolve(data)
+          }).error(function(){
+            deferred.reject("There is an error")
+          })
+          return deferred.promise
       }
     };
   });

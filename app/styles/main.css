@@ -94,6 +94,18 @@ md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-ta
     color: rgb(63,81,181);
 }
 
+.md-datepicker-calendar-pane {
+  background: white;
+}
+
+
+.mb-input-field {
+      border-bottom: 3px solid #1A4987;
+    border-left: transparent;
+    border-right: transparent;
+    border-top: transparent;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {

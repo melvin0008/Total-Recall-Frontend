@@ -38,6 +38,10 @@ module.exports = function(config) {
       'bower_components/angularUtils-pagination/dirPagination.js',
       'bower_components/ngmap/build/scripts/ng-map.js',
       'bower_components/markerclustererplus/src/markerclusterer.js',
+      'bower_components/jqcloud2/dist/jqcloud.js',
+      'bower_components/angular-jqcloud/angular-jqcloud.js',
+      'bower_components/moment/moment.js',
+      'bower_components/material-date-picker/build/mbdatepicker.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
