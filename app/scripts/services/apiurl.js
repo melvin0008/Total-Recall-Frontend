@@ -8,6 +8,6 @@
  * Constant in the frontendApp.
  */
 angular.module('TotalRecall')
-  // .constant('apiUrl', "https://totalrecallbackend.herokuapp.com/");
-  .constant('apiUrl', "http://localhost:5000/");
+  .constant('apiUrl', "https://totalrecallbackend.herokuapp.com/");
+  // .constant('apiUrl', "http://localhost:5000/");
 
