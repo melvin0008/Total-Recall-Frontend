@@ -1,12 +1,14 @@
-# frontend
+# Frontend
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.11.1.
+Frontend for the Total Recall Project
+[Backend for Total Recall](https://github.com/apoorva11029/Total-Recall) 
 
-## Build & development
+###What is TotalRecall?
 
-Run `grunt` for building and `grunt serve` for preview.
+### What Features it covers?
 
-## Testing
+### Total Recall in a nutshell
 
-Running `grunt test` will run the unit tests with karma.
+###Run Total Recall
+
+
